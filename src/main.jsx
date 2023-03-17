@@ -1,5 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { ContextProvider } from "context";
+import { inject } from "@vercel/analytics";
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+import "assets/scss/_index.scss";
+import "assets/fonts/fontAwasome.css";
+import "assets/index.css";
+import "assets/app.css";
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+if (import.meta.env.MODE === "production") {
+	inject();
+	disableReactDevTools();
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+	<ContextProvider>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</ContextProvider>
+);

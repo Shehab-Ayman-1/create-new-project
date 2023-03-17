@@ -141,6 +141,6 @@
 	@return var(--#{$att});
 }
 
-@function gut2($gutter1, $gutter2) {
-	@return var(--#{$gutter1}) var(--#{$gutter2});
+@function gut2($get21, $get22) {
+	@return var(--#{$get21}) var(--#{$get22});
 }

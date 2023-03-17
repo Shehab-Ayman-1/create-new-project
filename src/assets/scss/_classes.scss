@@ -2,15 +2,6 @@
 @use "./mixins" as *;
 @use "./global" as *;
 
-@keyframes rotating {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
-}
-
 // Pre-loader
 .pre-loader {
 	@include flex(center, center);
@@ -32,12 +23,12 @@
 	width: fit-content;
 	font-size: 1.8rem;
 	font-weight: 500;
-	padding: gutter(p2, p6);
-	margin: get(m3);
+	padding: get2(10px, 25px);
+	margin: 5px;
 	display: block;
 	cursor: pointer;
 	border: 2px solid get(main-color);
-	border-radius: get(r6);
+	border-radius: 30px;
 	transition: all 0.4s ease-in-out !important;
 	&:hover,
 	&:focus {
@@ -46,19 +37,19 @@
 		border-color: get(main-color) !important;
 	}
 	@include width(md) {
-		padding: gutter(p2, p4);
-		margin: get(m2);
+		padding: get2(10px, 20px);
+		margin: 5px;
 	}
 	@include width(sm) {
-		padding: gutter(p2, p3);
-		margin: get(m1);
+		padding: get2(10px, 15px);
+		margin: 5px;
 	}
 }
 
 .light-title {
 	color: get(white);
 	text-align: center;
-	margin-bottom: get(m5);
+	margin-bottom: 5px;
 	h1 {
 		font-size: 4rem;
 		@include width(md) {

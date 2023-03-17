@@ -1,15 +1,6 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
-// Default Elements Style
-
-section {
-	padding: 5rem 9%;
-	@include width(md) {
-		padding: 3rem 5%;
-	}
-}
-
 span {
 	color: get(main-color);
 }

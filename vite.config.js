@@ -12,8 +12,8 @@ export default defineConfig({
 			constants: resolve(__dirname, "./src/constants"),
 			layout: resolve(__dirname, "./src/layout"),
 			context: resolve(__dirname, "./src/context"),
-			utilities: resolve(__dirname, "./src/assets"),
-			widgets: resolve(__dirname, "./src/widgets"),
+			utilities: resolve(__dirname, "./src/utilities"),
+			routes: resolve(__dirname, "./src/routes"),
 		},
 	},
 });
