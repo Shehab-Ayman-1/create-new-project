@@ -1,0 +1,42 @@
+@use "../components/mixins" as *;
+
+.container {
+	max-width: 600px;
+	@include width(xsm) {
+		max-width: 90%;
+	}
+}
+
+.field {
+	width: 100%;
+	margin-top: 10px;
+	.field-title {
+		color: get(primary);
+		font-size: 18px;
+	}
+	.field-input {
+		background-color: get(white-bg);
+		width: 100%;
+		display: block;
+		padding: 10px;
+		margin-block: 10px;
+		border: get(border);
+	}
+}
+
+.navbar {
+	@include flex(space-between, center);
+	@include sticky(tl, 0, 0);
+	background-color: get(white-bg);
+	padding: 10px;
+	gap: 10px;
+	z-index: 100;
+	box-shadow: get(shadow);
+	a.home-logo img {
+		width: 100px;
+	}
+	a.login-btn {
+		width: 100px;
+		text-align: center;
+	}
+}

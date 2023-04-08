@@ -1,0 +1,6 @@
+mixin field(title, icon)
+    .field 
+        div.flex-between.w-fit
+            i(class=icon style="margin-right: 10px")
+            h2.field-title= title 
+        input.field-input(id=title + "-field" type="text" placeholder="Enter Your " + title)

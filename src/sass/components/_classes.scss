@@ -1,0 +1,98 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+// Variables
+$vars: ("primary", "secondary", "white", "dimWhite", "white-bg", "black", "dimBlack", "black-bg");
+@each $var in $vars {
+	.text-#{$var} {
+		color: get($var) !important;
+	}
+	.bg-#{$var} {
+		background-color: get($var) !important;
+	}
+}
+
+.shadow {
+	box-shadow: get(shadow);
+}
+
+.w-fit {
+	width: fit-content;
+}
+
+.w-full {
+	width: 100% !important;
+}
+
+.hidden {
+	display: none;
+}
+
+.block {
+	display: block;
+}
+
+.flex {
+	display: flex;
+}
+
+.flex-between {
+	@include flex(space-between, center);
+}
+.flex-center {
+	@include flex(center, center);
+}
+.flex-start {
+	@include flex(flex-start, center);
+}
+.flex-end {
+	@include flex(flex-end, center);
+}
+
+// Show & Hide Elements
+.hide-height {
+	max-height: 0 !important;
+}
+
+.show-display {
+	display: initial !important;
+}
+
+.hide-display {
+	display: none !important;
+}
+
+.show-scale {
+	transform: scale(1) !important;
+}
+
+.hide-scale {
+	transform: scale(0) !important;
+	height: 0 !important;
+	overflow: hidden;
+}
+
+// Basic Classes
+.mybtn {
+	width: fit-content;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 10px 30px;
+	margin: 15px 0;
+	display: block;
+	cursor: pointer;
+	border-radius: 30px;
+	border: 2px solid get(primary);
+	&:hover {
+		background: get(primary);
+		border-color: get(primary) !important;
+	}
+	@include width(md) {
+		padding: 10px 20px;
+		margin: 10px 0;
+	}
+	@include width(sm) {
+		padding: 10px 15px;
+		margin: 5px 0;
+	}
+}

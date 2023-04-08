@@ -1,0 +1,60 @@
+@use "./variables" as *;
+$themes: "red", "blue", "purple", "orange", "green", "silver", "cyan";
+
+body[data-mode="dark"] {
+	--white: #222;
+	--dimWhite: #546e7a;
+	--white-bg: #171d21;
+	--black: #fff;
+	--dimBlack: #aaa;
+	--black-bg: #f8f8f8;
+	--border: 1px solid var(--dimBlack);
+	--shadow: 5px 5px 15px var(--dimBlack);
+	background-color: black;
+	.swiper-pagination-bullet {
+		background: get(dimBlack);
+	}
+	.swiper-pagination-bullet-active {
+		background: get(primary);
+	}
+}
+
+@each $theme in $themes {
+	body[data-theme="#{$theme}"] {
+		@if $theme == "red" {
+			--primary: #dc143c;
+			--secondary: #e91e63;
+			--shadow: 5px 5px 15px var(--dimBlack);
+		}
+		@if $theme == "blue" {
+			--primary: #00a8ff;
+			--secondary: #0097e6;
+			--shadow: 5px 5px 15px var(--dimBlack);
+		}
+		@if $theme == "purple" {
+			--primary: #9c88ff;
+			--secondary: #8c7ae6;
+			--shadow: 5px 5px 15px var(--dimBlack);
+		}
+		@if $theme == "orange" {
+			--primary: #ffa500;
+			--secondary: #e1b12c;
+			--shadow: 5px 5px 15px var(--dimBlack);
+		}
+		@if $theme == "green" {
+			--primary: #4cd137;
+			--secondary: #44bd32;
+			--shadow: 5px 5px 15px var(--dimBlack);
+		}
+		@if $theme == "silver" {
+			--primary: #7f8fa6;
+			--secondary: #718093;
+			--shadow: 5px 5px 15px var(--dimBlack);
+		}
+		@if $theme == "cyan" {
+			--primary: #00bcd4;
+			--secondary: #008b9e;
+			--shadow: 5px 5px 15px var(--dimBlack);
+		}
+	}
+}
