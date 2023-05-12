@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import { Home } from "routes";
+import { Home } from "@/pages";
 
 function App() {
 	return (
 		<Routes>
-			<Route path="*" element="<h1>Route Not Defined</h1>" />
+			<Route path="*" element="Route Not Defined" />
 			<Route path="/" element={<Home />} />
 		</Routes>
 	);

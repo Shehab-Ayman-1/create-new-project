@@ -1,4 +1,4 @@
-export const route = {
-	local: "http://localhost:5000/api/products",
-	remotly: "/api/products",
+export const routes = {
+	locale: "http://localhost:5000/",
+	remote: "",
 };

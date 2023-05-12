@@ -2,13 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { ContextProvider } from "context";
+import { ContextProvider1, ContextProvider2 } from "@/context";
 import { inject } from "@vercel/analytics";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
-import "assets/scss/_index.scss";
-import "assets/fonts/fontAwasome.css";
-import "assets/index.css";
-import "assets/app.css";
+import "@/assets/sass/_index.scss";
+import "@/assets/fonts/fontAwasome.css";
 
 if (import.meta.env.MODE === "production") {
 	inject();
@@ -17,9 +15,11 @@ if (import.meta.env.MODE === "production") {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<ContextProvider>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	</ContextProvider>
+	<ContextProvider1>
+		<ContextProvider2>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</ContextProvider2>
+	</ContextProvider1>
 );

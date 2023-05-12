@@ -1,4 +1,3 @@
-import ReactLogo from "./images/react.svg";
-import ViteLogo from "./images/vite.svg";
+import Logo from "./images/vite.svg";
 
-export { ReactLogo, ViteLogo };
+export { Logo };

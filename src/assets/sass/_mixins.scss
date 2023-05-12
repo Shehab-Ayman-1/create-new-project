@@ -90,15 +90,15 @@
 	}
 }
 
-@mixin linear-background($url, $size, $attachment, $linear) {
-	background: linear-gradient($linear), url($url) no-repeat;
+@mixin background($url, $size, $attachment) {
+	background: url($url) no-repeat;
 	background-position: center;
 	background-size: $size;
 	background-attachment: $attachment;
 }
 
-@mixin background($url, $size, $attachment) {
-	background: url($url) no-repeat;
+@mixin linear-background($url, $size, $attachment, $linear) {
+	background: linear-gradient($linear), url($url) no-repeat;
 	background-position: center;
 	background-size: $size;
 	background-attachment: $attachment;
@@ -111,27 +111,22 @@
 		}
 	}
 	@if $Width == "lg" {
-		@media (max-width: 1200px) {
-			@content;
-		}
-	}
-	@if $Width == "xmd" {
-		@media (max-width: 992px) {
+		@media (min-width: 992px) {
 			@content;
 		}
 	}
 	@if $Width == "md" {
-		@media (max-width: 792px) {
+		@media (min-width: 792px) {
 			@content;
 		}
 	}
 	@if $Width == "xsm" {
-		@media (max-width: 576px) {
+		@media (min-width: 576px) {
 			@content;
 		}
 	}
 	@if $Width == "sm" {
-		@media (max-width: 390px) {
+		@media (min-width: 390px) {
 			@content;
 		}
 	}
@@ -139,8 +134,4 @@
 
 @function get($att) {
 	@return var(--#{$att});
-}
-
-@function gut2($get21, $get22) {
-	@return var(--#{$get21}) var(--#{$get22});
 }
