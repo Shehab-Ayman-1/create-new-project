@@ -33,31 +33,20 @@
 }
 
 .mybtn {
-	background: transparent;
-	color: get(white);
-	width: fit-content;
-	font-size: 1.8rem;
-	font-weight: bold;
-	padding: 10px 30px;
-	margin: 15px 0;
+	background-color: white;
+	font-size: 18px;
+	font-weight: 500;
+	padding: 5px 10px;
+	margin-block: 10px;
 	display: block;
 	cursor: pointer;
 	border: 2px solid get(primary);
-	border-radius: 30px;
-	transition: all 0.4s ease-in-out !important;
-	&:hover,
-	&:focus {
+	border-radius: 8px;
+	transition: all 0.2s ease-in-out !important;
+	&:hover {
 		background: get(primary);
 		color: get(white);
-		border-color: get(primary) !important;
-	}
-	@include width(md) {
-		padding: 10px 20px;
-		margin: 10px 0;
-	}
-	@include width(sm) {
-		padding: 10px 15px;
-		margin: 5px 0;
+		border-color: get(primary);
 	}
 }
 
@@ -112,4 +101,20 @@ $vars: ("primary", "secondary", "white", "dimWhite", "white-bg", "black", "dimBl
 
 .bg-black-mode {
 	background-color: get(black-mode);
+}
+
+.flex {
+	display: flex;
+}
+
+.flex-between {
+	justify-content: space-between;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.gap {
+	gap: 10px;
 }
