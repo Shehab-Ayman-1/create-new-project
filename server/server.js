@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 // Routes
 app.use("/api/users", users);
-app.use("/*", (req, res) => res.status(200).json({ method: req.method, url: req.url, message: "Path Not Exist." }));
+app.use("/*", (req, res) => res.status(400).json({ method: req.method, url: req.url, message: "Path Not Exist." }));
 
 // Mongo
 DBconnection();
