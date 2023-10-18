@@ -106,7 +106,7 @@
 	background-attachment: $attachment;
 }
 
-@mixin gradient-background($url, $size: cover, $attachment: initial, $linear) {
+@mixin gradient-background($url, $linear, $size: cover, $attachment: initial) {
 	background: linear-gradient($linear), url($url) no-repeat;
 	background-position: center;
 	background-size: $size;
