@@ -18,6 +18,7 @@ export const useAxios = (method, url, body, options) => {
 
 		setLoading(true);
 		setIsSubmitted(false);
+		setError("");
 
 		try {
 			let response;
@@ -36,6 +37,8 @@ export const useAxios = (method, url, body, options) => {
 
 			setError(() => err);
 			setStatus(error?.status);
+			setLoading(() => false);
+			setIsSubmitted(() => true);
 
 			console.log(error);
 			return { data: null, loading: false, error: err, isSubmitted: true, status: error?.status };
