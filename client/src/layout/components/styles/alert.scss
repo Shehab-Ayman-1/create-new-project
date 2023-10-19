@@ -2,12 +2,14 @@
 
 .alert-section {
 	@include fixed(tr, 70px, 20px);
+
 	.success {
 		@include flex(space-between);
 		background-color: green;
 		color: get(white);
-		padding: 5px 15px;
-		border-radius: 10px;
+		font-size: 22px;
+		padding: 10px 15px;
+		border-radius: 5px;
 	}
 	.error {
 		@extend .success;
