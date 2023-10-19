@@ -1,9 +1,17 @@
-import { Fragment } from "react";
+import { useEffect, useState } from "react";
 import "./styles/alert.scss";
 
 export const Alert = ({ message, success, error }) => {
+	const [show, setShow] = useState(true);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setShow(false);
+		}, 3000);
+	}, [success, error, message]);
+
 	return (
-		<div className="alert-section">
+		<div className={`alert-section ${show ? "" : "hide-display"}`}>
 			{success && (
 				<div className="success">
 					<p>{message}</p>
