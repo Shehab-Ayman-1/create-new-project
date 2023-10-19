@@ -7,7 +7,7 @@ export const Alert = ({ message, success, error }) => {
 	useEffect(() => {
 		setTimeout(() => {
 			setShow(false);
-		}, 3000);
+		}, 5000);
 	}, [success, error, message]);
 
 	return (
