@@ -7,7 +7,7 @@ export const Alert = ({ message, success, error }) => {
 			{success && (
 				<div className="success">
 					<p>{message}</p>
-					<i class="far fa-check-square" />
+					<i className="far fa-check-square" />
 				</div>
 			)}
 
