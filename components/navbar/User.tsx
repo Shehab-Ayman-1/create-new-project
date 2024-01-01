@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useSelector } from "@/hooks/useRedux";
+import { useSession } from "next-auth/react";
 
 import { Avatar, Menu, MenuItem, Typography } from "@/components/ui";
 import { userLogo } from "@/public";
@@ -23,6 +24,7 @@ const UserItem = ({ name, icon, onClick }: UserIcon) => {
 };
 
 export const User = () => {
+   const { data: session } = useSession();
    const { user } = useSelector(({ users }) => users);
    const router = useRouter();
 
@@ -34,7 +36,7 @@ export const User = () => {
    if (!user) return;
 
    return (
-      <Menu handler={<Avatar image={userLogo} alt="avatar" />} allowHover={false}>
+      <Menu handler={<Avatar src={session?.user?.image || userLogo?.src} alt="avatar" />} allowHover={false}>
          <UserItem name={user.name} icon="fa-user-circle" />
          <UserItem name={user.email} icon="fa-envelope-open" />
 

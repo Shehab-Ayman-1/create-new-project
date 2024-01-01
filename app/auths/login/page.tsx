@@ -1,13 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { getProviders } from "next-auth/react";
 
-import { FieldEvent, FormSubmitEvent } from "@/types";
+import { Providers, FieldEvent, FormSubmitEvent } from "@/types";
 import { Field, Form } from "@/components/ui";
 import { useDispatch } from "@/hooks/useRedux";
 import { useAxios } from "@/hooks/useAxios";
 import { Loading } from "@/layout/Loading";
 import { login } from "@/redux/users";
+import { SignWithProvider } from "@/components/auth";
 
 type Response = {
    user: {
@@ -19,11 +21,20 @@ type Response = {
 };
 
 const Login = () => {
-   const [formData, setFormData] = useState({ email: "", password: "" });
    const { data, loading, error, isSubmitted, refetch } = useAxios<Response>();
+
+   const [formData, setFormData] = useState({ provider: "custome", email: "", password: "" });
+   const [providers, setProviders] = useState<Providers>();
 
    const dispatch = useDispatch();
    const router = useRouter();
+
+   useLayoutEffect(() => {
+      (async () => {
+         const providers = await getProviders();
+         setProviders(providers as Providers);
+      })();
+   }, []);
 
    const handleFieldChange = (event: FieldEvent) => {
       setFormData((data) => ({ ...data, [event.target.name]: event.target.value }));
@@ -33,21 +44,10 @@ const Login = () => {
       event.preventDefault();
       if (!Object.values(formData).every((p) => p)) return alert("ادخل جميع البيانات المطلوبة");
 
-      /* EXPERMENTAL */
-      const user = { ...formData, name: "Shehab Ayman", role: 5051 };
-      if (formData.email && formData.password) {
-         dispatch(login(user));
-         router.push("/");
-         sessionStorage.setItem("user", JSON.stringify(user));
-         return;
-      }
-
-      const { data, isSubmitted, error } = await refetch("post", "/users/login", formData);
+      const { data, isSubmitted, error } = await refetch("post", "/auth/login", formData);
       if (isSubmitted && error) return;
 
       dispatch(login(data?.user));
-      sessionStorage.setItem("user", JSON.stringify(data?.user));
-
       router.push("/");
    };
 
@@ -76,6 +76,15 @@ const Login = () => {
             styles={{ input: "normal-case" }}
             onChange={handleFieldChange}
          />
+
+         <div className="">
+            {providers?.google && (
+               <SignWithProvider color="blue" icon="fa-google" provider={providers.google.id} />
+            )}
+            {providers?.github && (
+               <SignWithProvider color="black" icon="fa-github" provider={providers.github.id} />
+            )}
+         </div>
       </Form>
    );
 };

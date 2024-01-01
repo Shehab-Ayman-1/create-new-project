@@ -37,7 +37,7 @@ export const useAxios = <Data,>(method?: Method, url?: string, body?: object, op
          let response: AxiosResponse;
 
          if (method === "get") response = await router.get(url, options);
-         else response = await router[method](url, body, options);
+         else response = await router[method](url, JSON.stringify(body), options);
 
          let data = response.data;
          setData(data);
@@ -64,5 +64,5 @@ export const useAxios = <Data,>(method?: Method, url?: string, body?: object, op
    const refetch = async (method?: Method, url?: string, body?: object, options?: object) =>
       await fetcher(method, url, body, options);
 
-   return { data, loading, error, isSubmitted, status, refetch };
+   return { data, loading, error, isSubmitted, refetch };
 };

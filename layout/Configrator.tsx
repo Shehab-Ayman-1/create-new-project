@@ -20,6 +20,7 @@ const colors = [
 ];
 export const Configrator = () => {
    const [open, setOpen] = useState(false);
+   const [screen, setScreen] = useState({ width: 0, height: 0 });
 
    useLayoutEffect(() => {
       const mode = localStorage.getItem("mode") || "light";
@@ -27,6 +28,10 @@ export const Configrator = () => {
 
       document.querySelector("html")?.setAttribute("data-theme", theme);
       document.querySelector("html")?.setAttribute("class", mode);
+   }, []);
+
+   useLayoutEffect(() => {
+      setScreen(() => ({ width: window.innerWidth || 0, height: window.innerHeight || 0 }));
    }, []);
 
    const openDrawer = () => {
@@ -73,10 +78,10 @@ export const Configrator = () => {
                <Typography className="text-2xl leading-normal">Screen Properties</Typography>
                <div className="">
                   <Typography className="mb-2 text-base leading-normal text-dimWhite">
-                     Width: {screen.availWidth} px
+                     Width: {screen?.width} px
                   </Typography>
                   <Typography className="mb-2 text-base leading-normal text-dimWhite">
-                     Height: {screen.availHeight} px
+                     Height: {screen?.height} px
                   </Typography>
                </div>
             </div>
@@ -107,7 +112,7 @@ export const Configrator = () => {
                   Display Mode
                </Typography>
                <Typography className="mb-2 text-base leading-normal text-dimWhite">
-                  You Can Choose Your Prefered Mode From This Material Colors
+                  You Can Choose Your Prefered Mode From This Options
                </Typography>
                <div className="flex-between">
                   <Button color="black" onClick={() => handleChangeMode("dark")}>

@@ -1,11 +1,12 @@
 "use client";
 import { ThemeProvider } from "@material-tailwind/react";
-import { ReactNode } from "react";
+import { SessionProvider } from "next-auth/react";
 import { Provider } from "react-redux";
+import { ReactNode } from "react";
 
+import { Configrator, Navbar } from "@/layout";
 import { theme } from "@/constants";
 import { store } from "@/redux/store";
-import { Configrator, Navbar } from "@/layout";
 
 type WrapperProps = {
    children: ReactNode;
@@ -14,12 +15,13 @@ type WrapperProps = {
 export const Wrapper = ({ children }: WrapperProps) => {
    return (
       <ThemeProvider value={theme}>
-         <Provider store={store}>
-            <Navbar />
-            <Configrator />
-
-            {children}
-         </Provider>
+         <SessionProvider>
+            <Provider store={store}>
+               <Navbar />
+               <Configrator />
+               {children}
+            </Provider>
+         </SessionProvider>
       </ThemeProvider>
    );
 };

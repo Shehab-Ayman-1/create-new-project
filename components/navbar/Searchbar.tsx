@@ -1,9 +1,9 @@
 "use client";
 import { Card, CardBody, CardHeader, Collapse, List, ListItem } from "@material-tailwind/react";
 import { Fragment, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "@/hooks/useRedux";
 import { useRouter } from "next/navigation";
 
+import { useDispatch, useSelector } from "@/hooks/useRedux";
 import { getSearchList } from "@/redux/products";
 import { useAxios } from "@/hooks/useAxios";
 import { Loading } from "@/layout/Loading";
