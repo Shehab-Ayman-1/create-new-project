@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Merienda:wght@300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+@font-face {
+   font-family: "STV";
+   src: url("/fonts/stv.ttf") format("truetype");
+}
+
+* {
+   padding: 0;
+   margin: 0;
+   border: none;
+   outline: none;
+   scroll-behavior: smooth;
+   list-style: none !important;
+   box-sizing: border-box !important;
+   text-decoration: none !important;
+   text-transform: capitalize;
+}
+
+html {
+   @apply bg-gradient;
+   width: 100vw;
+   min-height: 100vh;
+   overflow-x: hidden;
+   &.dark {
+      @apply from-black via-darkGray to-black;
+      ::-webkit-scrollbar-track {
+         @apply bg-black;
+      }
+      [type="month"]::-webkit-calendar-picker-indicator {
+         cursor: pointer;
+         filter: invert(1);
+         &:hover {
+            opacity: 0.8;
+         }
+      }
+   }
+   &[dir="ltr"] {
+      // font-size: 14px;
+   }
+   * ::-webkit-scrollbar {
+      width: 3px !important;
+      height: 3px !important;
+   }
+   ::-webkit-scrollbar {
+      width: 5px;
+   }
+   ::-webkit-scrollbar-thumb {
+      @apply rounded-xl bg-teal-500;
+   }
+   ::-webkit-scrollbar-track {
+      @apply bg-white;
+   }
+   ::selection {
+      @apply bg-teal-500 text-white;
+      text-shadow: 5px 5px 10px black;
+   }
+}
+
+i {
+   @apply cursor-pointer text-xl text-dimWhite;
+   &:hover {
+      @apply scale-125 text-teal-500;
+   }
+}
