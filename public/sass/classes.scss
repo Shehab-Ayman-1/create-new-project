@@ -3,7 +3,7 @@
 }
 
 .text-gradient {
-   @apply bg-gradient-to-r from-teal-400 to-teal-900 bg-clip-text text-transparent;
+   @apply bg-gradient-to-r from-teal-300 via-teal-900 to-teal-300 bg-clip-text text-transparent;
 }
 
 .flex-between {

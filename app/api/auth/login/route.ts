@@ -1,5 +1,5 @@
-import { DBConnection } from "@/utils";
-import { Users } from "@/models";
+import { DBConnection } from "@/server/configs";
+import { Users } from "@/server/models";
 import bcrypt from "bcrypt";
 
 const send = (response: any, status: number = 400) => {

@@ -1,11 +1,9 @@
-import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import NextAuth from "next-auth";
-import bcrypt from "bcrypt";
 
-import { Users } from "@/models";
-import { DBConnection } from "@/utils";
+import { Users } from "@/server/models";
+import { DBConnection } from "@/server/configs";
 
 type User = {
    id: string;

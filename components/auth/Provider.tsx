@@ -1,11 +1,8 @@
 "use client";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 
 import { Button, Typography } from "@/components/ui";
 import { Color } from "@/types";
-import { useDispatch } from "@/hooks/useRedux";
-import { login } from "@/redux";
 
 type Provider = {
    provider: string;
@@ -14,13 +11,8 @@ type Provider = {
 };
 
 export const SignWithProvider = ({ provider, icon, color }: Provider) => {
-   const router = useRouter();
-   const dispatch = useDispatch();
-
    const handleSubmit = async () => {
-      signIn(provider);
-      // dispatch(login(user));
-      router.push("/");
+      signIn(provider, { callbackUrl: "/" });
    };
 
    return (
