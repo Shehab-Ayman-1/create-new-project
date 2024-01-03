@@ -18,7 +18,6 @@ export const Wrapper = ({ children }: WrapperProps) => {
          <SessionProvider>
             <Provider store={store}>
                <Navbar />
-
                <Configrator />
 
                <main className="mx-auto mt-20 w-full max-w-[1320px] p-2 text-dimWhite md:p-4 xl:p-0">

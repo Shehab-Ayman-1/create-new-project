@@ -55,7 +55,7 @@ export const Configrator = () => {
    };
 
    return (
-      <div className="fixed z-[1003]">
+      <div className="configrator fixed z-[1003]">
          <IconButton
             color="teal"
             variant="gradient"

@@ -54,6 +54,18 @@
    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
 }
 
+.fixed-top-left {
+   @apply fixed left-0 top-0;
+}
+
+.fixed-top-right {
+   @apply fixed right-0 top-0;
+}
+
+.fixed-center {
+   @apply fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
 .loading-animate {
    animation: loading 1.5s ease-in-out;
    @keyframes loading {
