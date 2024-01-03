@@ -11,6 +11,7 @@ type FormProps = {
    footerStyle?: string;
    loading?: boolean;
    onSubmit: (event: FormSubmitEvent) => any;
+   renderAfterButton?: JSX.Element;
    children: ReactNode;
 };
 
@@ -23,6 +24,7 @@ export const Form = ({
    footerStyle = "",
    loading = false,
    onSubmit = () => {},
+   renderAfterButton,
    children,
    ...formRest
 }: FormProps) => {
@@ -46,6 +48,7 @@ export const Form = ({
                   </Button>
                </CardFooter>
             )}
+            {renderAfterButton || ""}
          </Card>
       </form>
    );

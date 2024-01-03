@@ -1,33 +1,31 @@
 "use client";
 import { useLayoutEffect, useState } from "react";
+import { getProviders, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { getProviders } from "next-auth/react";
 
 import { Providers, FieldEvent, FormSubmitEvent } from "@/types";
-import { Field, Form } from "@/components/ui";
-import { useDispatch } from "@/hooks/useRedux";
-import { useAxios } from "@/hooks/useAxios";
-import { Loading } from "@/layout/Loading";
-import { login } from "@/redux/users";
 import { SignWithProvider } from "@/components/auth";
+import { Field, Form } from "@/components/ui";
+import { Loading } from "@/layout/Loading";
 
-type Response = {
-   user: {
-      name: string;
-      email: string;
-      password: string;
-      role: number;
-   };
+const ProvidersButton = ({ providers }: { providers: Providers }) => {
+   return (
+      <div className="mt-6 px-3">
+         {providers?.google && <SignWithProvider color="blue" icon="fa-google" provider={providers.google.id} />}
+         {providers?.github && <SignWithProvider color="black" icon="fa-github" provider={providers.github.id} />}
+      </div>
+   );
 };
 
 const Login = () => {
-   const { data, loading, error, isSubmitted, refetch } = useAxios<Response>();
-
-   const [formData, setFormData] = useState({ provider: "custome", email: "", password: "" });
-   const [providers, setProviders] = useState<Providers>();
-
-   const dispatch = useDispatch();
    const router = useRouter();
+
+   const [loading, setLoading] = useState(false);
+   const [isSubmitted, setIsSubmitted] = useState(false);
+   const [error, setError] = useState("");
+
+   const [formData, setFormData] = useState({ process: "login", email: "", password: "", redirect: false });
+   const [providers, setProviders] = useState<Providers>();
 
    useLayoutEffect(() => {
       (async () => {
@@ -37,18 +35,24 @@ const Login = () => {
    }, []);
 
    const handleFieldChange = (event: FieldEvent) => {
+      setIsSubmitted(false);
       setFormData((data) => ({ ...data, [event.target.name]: event.target.value }));
    };
 
    const handleSubmit = async (event: FormSubmitEvent) => {
       event.preventDefault();
-      if (!Object.values(formData).every((p) => p)) return alert("ادخل جميع البيانات المطلوبة");
+      if (!formData.email || !formData.password) return alert("Please Enter All The Required Fields");
 
-      const { data, isSubmitted, error } = await refetch("post", "/auth/login", formData);
-      if (isSubmitted && error) return;
+      setLoading(true);
+      setIsSubmitted(false);
+      setError("");
 
-      dispatch(login(data?.user));
-      router.push("/");
+      const response = await signIn("credentials", formData);
+      if (response?.ok) router.push("/");
+      else setError("Invalid Email OR Password");
+
+      setLoading(false);
+      setIsSubmitted(true);
    };
 
    return (
@@ -57,8 +61,9 @@ const Login = () => {
          buttonText="Login"
          headerText="Sign In"
          loading={(isSubmitted && !error) || loading}
+         renderAfterButton={<ProvidersButton providers={providers as Providers} />}
       >
-         <Loading isSubmitted={isSubmitted} loading={loading} error={error} message={data} to="/" />
+         <Loading isSubmitted={isSubmitted} loading={loading} error={error} message={{ error }} />
 
          <Field
             label="Email:"
@@ -76,15 +81,6 @@ const Login = () => {
             styles={{ input: "normal-case" }}
             onChange={handleFieldChange}
          />
-
-         <div className="">
-            {providers?.google && (
-               <SignWithProvider color="blue" icon="fa-google" provider={providers.google.id} />
-            )}
-            {providers?.github && (
-               <SignWithProvider color="black" icon="fa-github" provider={providers.github.id} />
-            )}
-         </div>
       </Form>
    );
 };

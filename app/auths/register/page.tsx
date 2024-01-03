@@ -1,28 +1,63 @@
 "use client";
-import { useState } from "react";
-import { FieldEvent, FormSubmitEvent } from "@/types";
+import { useLayoutEffect, useState } from "react";
+import { getProviders, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
+import { FieldEvent, FormSubmitEvent, Providers } from "@/types";
 import { Field, Form, Selectbox } from "@/components/ui";
-import { useAxios } from "@/hooks/useAxios";
+import { SignWithProvider } from "@/components/auth";
 import { Loading } from "@/layout/Loading";
 
+const ProvidersButton = ({ providers }: { providers: Providers }) => {
+   return (
+      <div className="mt-6 px-3">
+         {providers?.google && <SignWithProvider color="blue" icon="fa-google" provider={providers.google.id} />}
+         {providers?.github && <SignWithProvider color="black" icon="fa-github" provider={providers.github.id} />}
+      </div>
+   );
+};
+
 const ROLES = ["Admin", "User"];
+const formState = { process: "register", name: "", email: "", password: "", role: 0, redirect: false };
 const Register = () => {
-   const [formData, setFormData] = useState({ name: "", email: "", password: "", phone: "", role: 0 });
-   const { data, loading, error, isSubmitted, refetch } = useAxios();
+   const router = useRouter();
+
+   const [loading, setLoading] = useState(false);
+   const [isSubmitted, setIsSubmitted] = useState(false);
+   const [error, setError] = useState("");
+   const [formData, setFormData] = useState(formState);
+   const [providers, setProviders] = useState<Providers>();
+
+   useLayoutEffect(() => {
+      (async () => {
+         const providers = await getProviders();
+         setProviders(providers as Providers);
+      })();
+   }, []);
 
    const handleSelectChange = (name: string, value?: string) => {
       setFormData((data) => ({ ...data, [name]: value }));
    };
 
    const handleFieldChange = (event: FieldEvent) => {
+      setIsSubmitted(false);
       setFormData((data) => ({ ...data, [event.target.name]: event.target.value }));
    };
 
    const handleSubmit = async (event: FormSubmitEvent) => {
       event.preventDefault();
-      if (!Object.values(formData).every((p) => p)) return alert("ادخل جميع البيانات المطلوبة");
-      await refetch("post", "/users/register", formData);
+      if (!formData.email || !formData.password) return alert("Please Enter All The Required Fields");
+
+      setLoading(true);
+      setIsSubmitted(false);
+      setError("");
+
+      const response = await signIn("credentials", formData);
+      if (response?.ok) router.push("/");
+      else setError("This Email Is Already Exist");
+
+      setLoading(false);
+      setIsSubmitted(true);
    };
 
    return (
@@ -31,8 +66,10 @@ const Register = () => {
          headerText="Sign Up"
          buttonText="Register"
          loading={(isSubmitted && !error) || loading}
+         renderAfterButton={<ProvidersButton providers={providers as Providers} />}
       >
-         <Loading isSubmitted={isSubmitted} loading={loading} error={error} message={data} to="/" />
+         <Loading isSubmitted={isSubmitted} loading={loading} error={error} message={{ error }} />
+
          <Field
             label="Name:"
             name="name"
@@ -63,11 +100,8 @@ const Register = () => {
             label="Account Type:"
             value={formData.role}
             options={ROLES}
-            loading={!isSubmitted && loading}
             onChange={(value) => handleSelectChange("role", value)}
          />
-
-         <Field label="Phone:" type="number" name="phone" value={formData.phone} onChange={handleFieldChange} />
       </Form>
    );
 };

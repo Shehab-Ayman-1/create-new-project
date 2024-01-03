@@ -4,7 +4,6 @@ const schema = new Schema({
    name: { type: String, trim: true },
    email: { type: String, trim: true },
    password: { type: String, trim: true },
-   phone: { type: String, trim: true },
    role: { type: Number, trim: true },
 });
 

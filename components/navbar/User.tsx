@@ -33,7 +33,7 @@ export const User = () => {
       window.location.reload();
    };
 
-   if (!session || !session?.user) return;
+   if (!session || !session?.user?.email) return;
 
    return (
       <Menu handler={<Avatar src={session.user.image || userLogo.src} alt="avatar" />} allowHover={false}>
