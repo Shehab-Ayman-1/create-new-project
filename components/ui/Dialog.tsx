@@ -1,23 +1,22 @@
-"use client";
 import { Dialog, DialogBody, DialogHeader, Typography, DialogFooter } from "@material-tailwind/react";
 import { Button } from "@/components/ui";
 import { ReactNode } from "react";
 
 type DialogProps = {
-   headerText: string;
-   buttonText: string;
+   text: { header: string; button: string };
    open: boolean;
    loading: boolean;
+   size: "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
    handler: () => void;
    onSubmit: () => void;
    children: ReactNode;
 };
 
 export const MTDialog = ({
-   headerText = "",
-   buttonText = "",
+   text = { header: "", button: "" },
    open = false,
    loading = false,
+   size = "md",
    handler,
    onSubmit,
    children,
@@ -25,14 +24,14 @@ export const MTDialog = ({
    return (
       <Dialog
          open={open}
-         size="md"
+         size={size}
          placeholder="menu"
          handler={handler}
          className="bg-gradient max-h-[80vh] overflow-y-auto shadow-sp"
       >
          <DialogHeader placeholder="menu-header" className="flex-between">
             <Typography placeholder="menu-title" variant="h3" color="teal">
-               {headerText}
+               {text.header}
             </Typography>
             <i className="fa fa-times text-2xl" onClick={() => handler()} />
          </DialogHeader>
@@ -41,7 +40,7 @@ export const MTDialog = ({
 
          <DialogFooter placeholder="menu-footer">
             <Button disabled={loading} fullWidth onClick={onSubmit}>
-               {buttonText}
+               {text.button}
             </Button>
          </DialogFooter>
       </Dialog>

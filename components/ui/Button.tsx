@@ -1,8 +1,6 @@
-"use client";
 import { Button as MTButton } from "@material-tailwind/react";
-import { Variant, Color } from "@/types";
+import { Variant, Color, ButtonEvent } from "@/types";
 import { ReactNode } from "react";
-import { ButtonEvent } from "@/types";
 
 type ButtonProps = {
    type?: "button" | "submit" | "reset";
@@ -12,6 +10,7 @@ type ButtonProps = {
    variant?: Variant;
    disabled?: boolean;
    fullWidth?: boolean;
+   size?: "sm" | "md" | "lg";
    onClick?: (event: ButtonEvent) => any;
    children?: ReactNode;
 };
@@ -24,6 +23,7 @@ export const Button = ({
    icon,
    disabled = false,
    fullWidth = false,
+   size = "sm",
    children,
    onClick,
 }: ButtonProps) => {
@@ -36,11 +36,11 @@ export const Button = ({
          fullWidth={fullWidth}
          onClick={onClick}
          placeholder="button"
-         size="sm"
+         size={size}
          className={`flex-center group px-3 text-base hover:brightness-125 md:text-xl ${className}`}
       >
+         {icon && <i className={`fa ${icon || ""} text-sm group-hover:text-teal-500 rtl:mt-3`} />}
          {children || " "}
-         {icon && <i className={`fa ${icon} text-sm group-hover:text-teal-500 rtl:mt-3`} />}
       </MTButton>
    );
 };

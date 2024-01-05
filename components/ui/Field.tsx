@@ -1,4 +1,3 @@
-'use client'
 import { Input } from "@material-tailwind/react";
 import { FieldEvent } from "@/types";
 
@@ -12,10 +11,10 @@ type FieldProps = {
    type?: "text" | "email" | "password" | "number" | "date" | "month";
    label: string;
    name: string;
-   value: string;
+   value?: string;
    min?: string | number;
-   required?: true | false;
-   onChange: (event: FieldEvent) => any;
+   required?: boolean;
+   onChange?: (event: FieldEvent) => any;
    styles?: Styles;
 };
 

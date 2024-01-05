@@ -1,4 +1,3 @@
-"use client";
 import { Avatar as MTAvatar } from "@material-tailwind/react";
 
 type AvatarProps = {
@@ -16,6 +15,6 @@ export const Avatar = ({ src = "", alt, variant = "rounded", className = "" }: A
          alt={alt}
          src={src}
          className={`h-6 w-6 cursor-pointer rounded-full sm:h-8 sm:w-8 ${className}`}
-      ></MTAvatar>
+      />
    );
 };

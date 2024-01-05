@@ -1,4 +1,3 @@
-"use client";
 import { Typography as MTTypography } from "@material-tailwind/react";
 import { ReactNode } from "react";
 import { Color } from "@/types";

@@ -1,11 +1,6 @@
-"use client";
 import { Color } from "@/types";
-import {
-   Card as MTCard,
-   CardHeader as MTCardHeader,
-   CardBody as MTCardBody,
-   CardFooter as MTCardFooter,
-} from "@material-tailwind/react";
+import { Card as MTCard, CardHeader as MTCardHeader } from "@material-tailwind/react";
+import { CardBody as MTCardBody, CardFooter as MTCardFooter } from "@material-tailwind/react";
 import { ReactNode } from "react";
 
 type CardProps = {

@@ -9,7 +9,7 @@ type DrawerProps = {
    children: ReactNode;
 };
 
-export const Drawer = ({ placement = "left", open, className = "", onClose, children }: DrawerProps) => {
+export const Drawer = ({ placement = "left", open = false, className = "", onClose, children }: DrawerProps) => {
    return (
       <MTDrawer
          placement={placement}

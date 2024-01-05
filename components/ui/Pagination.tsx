@@ -1,4 +1,3 @@
-"use client";
 import { IconButton } from "@material-tailwind/react";
 import { Button } from "@/components/ui";
 

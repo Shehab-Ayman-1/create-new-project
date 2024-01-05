@@ -1,4 +1,3 @@
-"use client";
 import { Menu as MTMenu, MenuItem as MTMenuItem, MenuHandler, MenuList, Button } from "@material-tailwind/react";
 import { ReactNode } from "react";
 import { MenuItemEvent } from "@/types";
@@ -9,12 +8,6 @@ type MenuItemProps = {
    onClick?: (event: MenuItemEvent) => void;
 };
 
-type MenuProps = {
-   handler: string | JSX.Element;
-   allowHover?: boolean;
-   children: ReactNode;
-};
-
 export const MenuItem = ({ className = "", onClick, children }: MenuItemProps) => {
    return (
       <MTMenuItem className={className} placeholder="menu-item" onClick={onClick}>
@@ -23,20 +16,10 @@ export const MenuItem = ({ className = "", onClick, children }: MenuItemProps) =
    );
 };
 
-const Handler = () => {
-   return (
-      <MenuHandler>
-         <Button
-            placeholder="toggler"
-            variant="text"
-            size="sm"
-            color="teal"
-            className="flex-center group px-3 text-sm hover:brightness-125 md:text-base"
-         >
-            Toggler
-         </Button>
-      </MenuHandler>
-   );
+type MenuProps = {
+   handler: string | JSX.Element;
+   allowHover?: boolean;
+   children: ReactNode;
 };
 
 export const Menu = ({ handler, allowHover = true, children }: MenuProps) => {

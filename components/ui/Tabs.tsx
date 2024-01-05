@@ -1,4 +1,3 @@
-"use client";
 import { Tabs as MTTabs, Tab, TabsBody, TabsHeader } from "@material-tailwind/react";
 import { ReactNode } from "react";
 
