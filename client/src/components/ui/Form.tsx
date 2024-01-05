@@ -1,69 +1,46 @@
+import { Typography, Button, Card, CardBody, CardHeader, CardFooter } from "@/components/ui";
 import { FormSubmitEvent } from "@/types";
-import { Typography, Button, Card, CardBody, CardHeader, CardFooter } from "@material-tailwind/react";
 import { ReactNode } from "react";
 
 type FormProps = {
-   headerText: string;
-   buttonText: string;
-   cardStyle?: string;
-   headerStyle?: string;
-   bodyStyle?: string;
-   footerStyle?: string;
+   text: { header: string; button: string };
+   styles: { card: string; header: string; body: string; footer: string };
    loading?: boolean;
    onSubmit: (event: FormSubmitEvent) => any;
+   renderAfterButton?: JSX.Element;
    children: ReactNode;
 };
 
 export const Form = ({
-   headerText = "",
-   buttonText = "",
-   cardStyle = "",
-   headerStyle = "",
-   bodyStyle = "",
-   footerStyle = "",
+   text = { header: "", button: "" },
+   styles = { card: "", header: "", body: "", footer: "" },
    loading = false,
    onSubmit = () => {},
+   renderAfterButton,
    children,
    ...formRest
 }: FormProps) => {
    return (
-      <form onSubmit={onSubmit} autoComplete="off" {...formRest}>
+      <form onSubmit={onSubmit} {...formRest}>
          <Card
-            placeholder="card"
-            className={`border-sp bg-gradient mx-auto mb-2 mt-14 w-[650px] max-w-full shadow-sp md:mt-32 dark:shadow-none ${cardStyle}`}
+            className={`border-sp bg-gradient mx-auto mb-2 mt-14 w-[650px] max-w-full overflow-x-visible md:mt-32 ${styles.card}`}
          >
-            <CardHeader
-               variant="gradient"
-               color="teal"
-               placeholder="card-header"
-               className={`flex-center mx-auto -mt-12 mb-4 h-20 w-[80%] bg-gradient-to-r from-teal-400 to-teal-900 sm:h-28 ${
-                  headerStyle || ""
-               }`}
-            >
-               <Typography placeholder="card-title" variant="h3" className="text-2xl md:text-3xl">
-                  {headerText}
+            <CardHeader className={styles.header}>
+               <Typography color="white" variant="h3" className="text-2xl md:text-3xl">
+                  {text.header}
                </Typography>
             </CardHeader>
 
-            <CardBody placeholder="card-body" className={`flex flex-col gap-4 p-3 ${bodyStyle}`}>
-               {children}
-            </CardBody>
+            <CardBody className={styles.body}>{children}</CardBody>
 
-            {buttonText && (
-               <CardFooter placeholder="card-footer" className={`p-3 ${footerStyle}`}>
-                  <Button
-                     type="submit"
-                     variant="gradient"
-                     disabled={loading}
-                     placeholder="card-button"
-                     color="teal"
-                     className="bg-teal-500 bg-gradient-to-r from-teal-400 to-teal-900 text-xl hover:brightness-125 md:text-2xl"
-                     fullWidth
-                  >
-                     {buttonText}
+            {text.button && (
+               <CardFooter className={styles.footer}>
+                  <Button type="submit" disabled={loading} className="from-teal-400 to-teal-900" fullWidth>
+                     {text.button}
                   </Button>
                </CardFooter>
             )}
+            {renderAfterButton || ""}
          </Card>
       </form>
    );

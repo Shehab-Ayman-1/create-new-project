@@ -1,4 +1,3 @@
-import { FieldEvent } from "@/types";
 import { Option, Select } from "@material-tailwind/react";
 import { cloneElement } from "react";
 
@@ -11,11 +10,10 @@ type Styles = {
 
 type SelectboxProps = {
    label: string;
-   value: string | number;
    loading?: boolean;
-   options?: string[];
+   options: string[];
    styles?: Styles;
-   onChange: (value: string | undefined) => any;
+   onChange?: (value: string | undefined) => any;
 };
 
 const styleClasses = {
@@ -27,7 +25,6 @@ const styleClasses = {
 
 export const Selectbox = ({
    label = "",
-   value = "",
    loading = false,
    options = [],
    onChange,
@@ -41,13 +38,6 @@ export const Selectbox = ({
          variant="standard"
          color="teal"
          size="lg"
-         selected={(element) =>
-            element &&
-            cloneElement(value ? element : <p>{label}</p>, {
-               disabled: true,
-               className: "flex-start opacity-100 pointer-events-none",
-            })
-         }
          className={`${styleClasses.select} ${styles.select}`}
          containerProps={{ className: `${styleClasses.container} ${styles.container}` }}
          labelProps={{ className: `${styleClasses.label} ${styles.label}` }}
@@ -55,7 +45,7 @@ export const Selectbox = ({
          animate={{ initial: { y: 25 }, mount: { y: 0 }, unmount: { y: 25 } }}
       >
          {options.length ? (
-            options?.map((value, i) => (
+            options.map((value, i) => (
                <Option className="text-xl hover:!bg-dimTeal hover:dark:text-white" value={value} key={i}>
                   {value}
                </Option>

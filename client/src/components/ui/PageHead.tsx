@@ -1,18 +1,18 @@
-import { Typography, TypographyProps } from "@material-tailwind/react";
+import { ReactNode } from "react";
+import { Typography } from "@/components/ui";
+import { Color } from "@/types";
 
-type PageHeadProps = TypographyProps & {
-   text: string;
+type PageHeadProps = {
+   variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "paragraph" | "lead" | "small";
+   color?: Color;
+   className?: string;
+   children: ReactNode;
 };
 
-export const PageHead = ({ variant, color, className, text = "" }: PageHeadProps) => {
+export const PageHead = ({ variant = "h3", color = "teal", className = "", children = "" }: PageHeadProps) => {
    return (
-      <Typography
-         variant={variant || "h3"}
-         placeholder="typography"
-         color={color || "teal"}
-         className={`mb-4 text-center ${className || ""}`}
-      >
-         {text}
+      <Typography variant={variant} color={color} className={`mb-4 text-center ${className}`}>
+         {children}
       </Typography>
    );
 };

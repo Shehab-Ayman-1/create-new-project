@@ -1,4 +1,5 @@
-import { Button, IconButton } from "@material-tailwind/react";
+import { IconButton } from "@material-tailwind/react";
+import { Button } from "@/components/ui";
 
 type PaginationProps = {
    activePage: number;
@@ -21,13 +22,12 @@ export const Pagination = ({ activePage, setActivePage, pagination }: Pagination
       <div className="flex-center my-5 flex-wrap">
          <Button
             variant="text"
-            className="flex-center p-0 text-xl text-teal-500 hover:bg-blue-gray-400/20 hover:brightness-125 ltr:text-base"
+            icon="fa-arrow-left text-teal"
+            className="p-0 hover:bg-blue-gray-400/20 ltr:text-base"
             onClick={prev}
-            placeholder="previous"
             disabled={activePage === 0}
          >
-            <i className="fa fa-arrow-left text-teal" />
-            <span className="hidden pb-3 md:inline ltr:pb-1">prev</span>
+            <span className="hidden pb-3 md:inline ltr:pb-1">Prev</span>
          </Button>
 
          <div className="flex-center flex-wrap">
@@ -58,13 +58,12 @@ export const Pagination = ({ activePage, setActivePage, pagination }: Pagination
 
          <Button
             variant="text"
-            className="flex-center p-0 text-xl text-teal-500 hover:bg-blue-gray-400/20 hover:brightness-125 ltr:text-base"
+            icon="fa-arrow-right text-teal"
+            className="p-0 hover:bg-blue-gray-400/20 ltr:text-base"
             onClick={next}
-            placeholder="next"
             disabled={activePage === pagination - 1}
          >
-            <span className="hidden pb-3 md:inline ltr:pb-1">next</span>
-            <i className="fa fa-arrow-right text-teal" />
+            <span className="hidden pb-3 md:inline ltr:pb-1">Next</span>
          </Button>
       </div>
    );
