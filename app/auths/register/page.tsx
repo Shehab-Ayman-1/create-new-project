@@ -63,8 +63,7 @@ const Register = () => {
    return (
       <Form
          onSubmit={handleSubmit}
-         headerText="Sign Up"
-         buttonText="Register"
+         text={{ header: "Sign Up", button: "Register" }}
          loading={(isSubmitted && !error) || loading}
          renderAfterButton={<ProvidersButton providers={providers as Providers} />}
       >
@@ -98,7 +97,6 @@ const Register = () => {
 
          <Selectbox
             label="Account Type:"
-            value={formData.role}
             options={ROLES}
             onChange={(value) => handleSelectChange("role", value)}
          />

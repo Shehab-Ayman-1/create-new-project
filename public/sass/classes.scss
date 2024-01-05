@@ -1,5 +1,5 @@
 .bg-gradient {
-   @apply bg-gradient-to-bl from-white to-blue-gray-200 dark:from-black dark:via-darkGray dark:to-black;
+   @apply bg-gradient-to-bl from-white via-blue-gray-100 to-white dark:from-darkGray dark:via-black dark:to-darkGray;
 }
 
 .text-gradient {

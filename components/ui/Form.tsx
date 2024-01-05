@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 
 type FormProps = {
    text: { header: string; button: string };
-   styles: { card: string; header: string; body: string; footer: string };
+   styles?: { card: string; header: string; body: string; footer: string };
    loading?: boolean;
    onSubmit: (event: FormSubmitEvent) => any;
    renderAfterButton?: JSX.Element;

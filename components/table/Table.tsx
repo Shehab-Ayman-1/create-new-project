@@ -1,16 +1,17 @@
-import { Card, Pagination } from "@/components/ui";
+import { Card } from "@material-tailwind/react";
 import { Fragment, ReactNode } from "react";
 
+import { Pagination } from "@/components/ui";
 import { Foot } from "./Foot";
 import { Head } from "./Head";
 
 type TableProps = {
    headers: string[];
    pagination: number;
-   footerTitle: string;
-   footerSpan: [number, number];
-   total: number;
-   tableStyle: string;
+   footerTitle?: string;
+   footerSpan?: [number, number];
+   total?: number;
+   tableStyle?: string;
    activePage: number;
    setActivePage: (arg?: any) => any;
    children: ReactNode;
@@ -35,7 +36,10 @@ export const Table = ({
             <Pagination activePage={activePage} setActivePage={setActivePage} pagination={pagination} />
          )}
 
-         <Card className={`card-table-outfit dark:border-sp h-full w-full ${tableStyle}`}>
+         <Card
+            placeholder="card"
+            className={`card-table-outfit dark:border-sp h-full w-full overflow-x-auto bg-transparent p-2 shadow-sp dark:shadow-none ${tableStyle}`}
+         >
             <table className="w-full table-auto rounded-3xl dark:shadow-none">
                <Head headers={headers} />
                <tbody>{children}</tbody>

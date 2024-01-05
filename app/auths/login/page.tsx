@@ -58,8 +58,7 @@ const Login = () => {
    return (
       <Form
          onSubmit={handleSubmit}
-         buttonText="Login"
-         headerText="Sign In"
+         text={{ header: "Sign In", button: "Login" }}
          loading={(isSubmitted && !error) || loading}
          renderAfterButton={<ProvidersButton providers={providers as Providers} />}
       >
