@@ -1,21 +1,9 @@
 .bg-gradient {
-   @apply bg-gradient-to-bl from-white to-blue-gray-200 dark:from-black dark:via-darkGray dark:to-black;
+   @apply bg-gradient-to-bl from-white via-blue-gray-100 to-white dark:from-darkGray dark:via-black dark:to-darkGray;
 }
 
 .text-gradient {
-   @apply bg-gradient-to-r from-teal-400 to-teal-900 bg-clip-text text-transparent;
-}
-
-.loading-animate {
-   animation: loading 1.5s ease-in-out;
-   @keyframes loading {
-      0% {
-         width: 0;
-      }
-      100% {
-         width: 100%;
-      }
-   }
+   @apply bg-gradient-to-r from-teal-300 via-teal-900 to-teal-300 bg-clip-text text-transparent;
 }
 
 .flex-between {
@@ -64,4 +52,28 @@
 
 .absolute-center {
    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+.fixed-top-left {
+   @apply fixed left-0 top-0;
+}
+
+.fixed-top-right {
+   @apply fixed right-0 top-0;
+}
+
+.fixed-center {
+   @apply fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+.loading-animate {
+   animation: loading 1.5s ease-in-out;
+   @keyframes loading {
+      0% {
+         width: 0;
+      }
+      100% {
+         width: 100%;
+      }
+   }
 }

@@ -53,8 +53,7 @@ export const Login = () => {
    return (
       <Form
          onSubmit={handleSubmit}
-         buttonText="Login"
-         headerText="Sign In"
+         text={{ header: "Login", button: "Sign In" }}
          loading={(isSubmitted && !error) || loading}
       >
          <Loading isSubmitted={isSubmitted} loading={loading} error={error} message={data} to="/" />

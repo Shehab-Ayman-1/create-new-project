@@ -2,7 +2,7 @@ import { Typography } from "@material-tailwind/react";
 
 type FootProps = {
    total: number;
-   footerTitle: string;
+   footerTitle?: string;
    footerSpan: [number, number];
 };
 
@@ -26,7 +26,7 @@ export const Foot = ({ total, footerTitle, footerSpan: [colSpan1, colSpan2] }: F
                   color="teal"
                   className="text-base text-white print:text-dimWhite md:text-xl"
                >
-                  {total?.toLocaleString() || "00,000"} <span className="text-lg">Pound</span>
+                  {total?.toLocaleString() || "00,00"} <span className="text-lg">Pound</span>
                </Typography>
             </th>
          </tr>

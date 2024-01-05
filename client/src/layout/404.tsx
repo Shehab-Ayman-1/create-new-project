@@ -1,11 +1,13 @@
+import { Typography } from "@/components/ui";
+import { NotFoundCover } from "@/assets";
+
 export const PageNotFound = () => {
    return (
-      <div className="fixed-center h-32 max-h-full w-32 max-w-full">
-         <img
-            src="https://webpresence.digital/wp-content/uploads/2012/05/google-penguin-optimization.jpg"
-            alt="404 page"
-            className="mx-auto block h-full w-full object-contain"
-         />
+      <div className="fixed-center">
+         <img src={NotFoundCover} alt="404 page" className="mx-auto block h-full w-full object-contain" />
+         <Typography variant="h3" className="mt-5 text-center">
+            Page Not Found
+         </Typography>
       </div>
    );
 };

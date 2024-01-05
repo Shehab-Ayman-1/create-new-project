@@ -27,8 +27,7 @@ export const Register = () => {
    return (
       <Form
          onSubmit={handleSubmit}
-         headerText="Sign Up"
-         buttonText="Register"
+         text={{ header: "Sign Up", button: "Register" }}
          loading={(isSubmitted && !error) || loading}
       >
          <Loading isSubmitted={isSubmitted} loading={loading} error={error} message={data} to="/" />
@@ -60,7 +59,6 @@ export const Register = () => {
 
          <Selectbox
             label="Account Type:"
-            value={formData.role}
             options={ROLES}
             loading={!isSubmitted && loading}
             onChange={(value) => handleSelectChange("role", value)}

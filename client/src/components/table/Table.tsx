@@ -8,10 +8,10 @@ import { Head } from "./Head";
 type TableProps = {
    headers: string[];
    pagination: number;
-   footerTitle: string;
-   footerSpan: [number, number];
-   total: number;
-   tableStyle: string;
+   footerTitle?: string;
+   footerSpan?: [number, number];
+   total?: number;
+   tableStyle?: string;
    activePage: number;
    setActivePage: (arg?: any) => any;
    children: ReactNode;

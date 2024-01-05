@@ -45,7 +45,7 @@ export const Configrator = () => {
       { theme: "indigo", from: "from-indigo-400", to: "to-indigo-900", hover: "hover:bg-indigo-900/50" },
       { theme: "blue", from: "from-blue-400", to: "to-blue-900", hover: "hover:bg-blue-900/50" },
       { theme: "teal", from: "from-purple-400", to: "to-purple-900", hover: "hover:bg-purple-900/50" },
-      { theme: "teal", from: "from-teal-400", to: "to-teal-900", hover: "hover:bg-teal-900/50" },
+      { theme: "teal", from: "from-green-400", to: "to-green-900", hover: "hover:bg-green-900/50" },
    ];
 
    return (
